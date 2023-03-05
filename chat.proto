@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package chat;
+
+option go_package = "github.com/dvterry/idl";
+
+import "google/protobuf/timestamp.proto";
+
+message Header {
+    int64 id                       = 1;
+    google.protobuf.Timestamp time = 2;
+}
+message ChatRequest {
+    Header header = 1;
+
+    string message = 2;
+}
+
+message ChatResponse {
+    Header header = 1;
+
+    string message = 2;
+}
+
+service Chat {
+    rpc MakeChatRequest(ChatRequest) returns (ChatResponse) {}
+}
